@@ -1,0 +1,28 @@
+System.out.println("Loading");
+String xesfilepath = "xesfiles/";
+String bpmnfilepath = "output_bpmn_files/";
+log = open_xes_log_file(xesfilepath.concat(xesfilename).concat(".xes"));
+File bpmn_net_file = new File(bpmnfilepath.concat(xesfilename).concat(".bpmn"));
+
+System.out.println("Setting classifier");
+org.deckfour.xes.classification.XEventClassifier classifier = new org.deckfour.xes.classification.XEventNameClassifier();
+
+System.out.println("Creatingistics miner settings");
+org.processmining.plugins.heuristicsnet.miner.heuristics.miner.settings.HeuristicsMinerSettings hms = new org.processmining.plugins.heuristicsnet.miner.heuristics.miner.settings.HeuristicsMinerSettings();
+hms.setClassifier(classifier);
+
+System.out.println("Callingr");
+net = mine_for_a_heuristics_net_using_heuristics_miner(log, hms);
+
+System.out.println("TranslatingN");
+pn_and_marking = convert_heuristics_net_into_petri_net(net);
+
+System.out.println(net);
+
+//File net_file = new File("mined_net_heena.pnml");
+//pnml_export_petri_net_(pn_and_marking[0],net_file);
+bpmn=convert_petri_net_to_bpmn_diagram(pn_and_marking[0]);
+System.out.println("Saving bpmn");
+bpmn_xml_2_0_export(bpmn[0], bpmn_net_file);
+
+System.exit(0);

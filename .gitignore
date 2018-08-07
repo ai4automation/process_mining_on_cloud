@@ -5,6 +5,21 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# exclude everything
+uploads/*
+prom/xesfiles/*
+prom/output_bpmn_files/*
+prom/logs/*
+prom/generated_scripts/*
+
+# exception to the rule
+!prom/uploads/.gitkeep
+!prom/xesfiles/.gitkeep
+!prom/logs/.gitkeep
+!prom/generated_scripts/.gitkeep
+!prom/output_bpmn_files/.gitkeep
+
+
 # Runtime data
 pids
 *.pid
@@ -56,4 +71,3 @@ typings/
 
 # dotenv environment variables file
 .env
-

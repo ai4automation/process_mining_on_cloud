@@ -34,7 +34,7 @@ var make_script = function(eventlog_inputs){
 					sh_logger.write("7z x -y -oxesfiles xesfiles/"+eventlog_inputs.filestring+".xes.gz\n");
 					sh_logger.write("echo \"String xesfilename=\\\""+eventlog_inputs.filestring+"\\\";\"| cat - template_generate_bpmn.txt > generated_scripts/"+eventlog_inputs.filestring+"_bpmn.txt\n");
 					sh_logger.write("sh Prom68CLI.sh -f generated_scripts/"+eventlog_inputs.filestring+"_bpmn.txt\n");
-					sh_logger.write("cp output_bpmn_files/"+eventlog_inputs.filestring+".bpmn ../public/output_bpmn_files/\n");
+				//	sh_logger.write("cp output_bpmn_files/"+eventlog_inputs.filestring+".bpmn ../public/output_bpmn_files/\n");
 					sh_logger.end();
 				});
 				sh_logger.on("finish",function(){
@@ -43,7 +43,7 @@ var make_script = function(eventlog_inputs){
 								' 2>logs/'+eventlog_inputs.filestring+'.log', (error, stdout, stderr) => {
 
 							  console.log(`stdout: ${stdout}`);
-								fs.readFile('public/output_bpmn_files/'+eventlog_inputs.filestring+".bpmn", 'utf8', function (err,data) {
+								fs.readFile('prom/output_bpmn_files/'+eventlog_inputs.filestring+".bpmn", 'utf8', function (err,data) {
 									  resolve(data)
 								});
 

@@ -11,6 +11,8 @@ prom/xesfiles/*
 prom/output_bpmn_files/*
 prom/logs/*
 prom/generated_scripts/*
+prom/eventlogs/*
+
 
 # exception to the rule
 !prom/uploads/.gitkeep
@@ -18,6 +20,8 @@ prom/generated_scripts/*
 !prom/logs/.gitkeep
 !prom/generated_scripts/.gitkeep
 !prom/output_bpmn_files/.gitkeep
+!prom/eventlogs/.gitkeep
+
 
 
 # Runtime data

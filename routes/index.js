@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var get_bpmn = require('../services/prom_services/get_bpmn');
+var get_bpmn_from_unstructured = require("../services/prom_services/get_bpmn_from_unstructured")
 var multer = require('multer');
 var upload = multer({ dest: 'uploads/' });
 var path = require('path')

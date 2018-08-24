@@ -4,7 +4,7 @@
 ## ProM specific
 ###
 PROGRAM=ProM
-DIR=/Users/sampath/Projects/prom
+DIR=.
 echo ${DIR}
 CP=${DIR}/ProM68_dist/ProM-Framework-6.8.60.jar:${DIR}/ProM68_dist/ProM-Contexts-6.8.34.jar:${DIR}/ProM68_dist/ProM-Models-6.7.20.jar:${DIR}/ProM68_dist/ProM-Plugins-6.7.45.jar:${DIR}/.*
 LIBDIR=${DIR}/ProM68_lib

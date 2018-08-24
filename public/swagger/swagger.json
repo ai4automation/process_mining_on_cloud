@@ -1,0 +1,70 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Process discovery from Application Logs",
+        "description": "Process discovery from structured and unstructured application logs",
+        "version": "1.0.0"
+    },
+    "host": "localhost:3000",
+    "schemes": [
+        "http"
+    ],
+    "basePath": "/discovery/api/v1",
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/projects": {
+            "get": {
+                "summary": "gets list of all projects accessbile for apikey",
+                "description": "gets list of projects accessbile for apikey\n",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "apikey",
+                        "in": "query",
+                        "description": "Api key generated",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "projects"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "list of project names have access with the api key",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+
+    },
+    "definitions": {
+        "Error": {
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

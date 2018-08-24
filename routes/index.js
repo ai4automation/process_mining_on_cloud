@@ -24,6 +24,8 @@ var upload = multer({
 		storage: storage
 	}).single('eventlog')
 
-router.post('/pm_as_service/get_bpmn', upload,get_bpmn.invoke);
+router.post('/mine_model', upload,get_bpmn.invoke);
+router.post('/mine_from_unstructured', upload,get_bpmn_from_unstructured.invoke);
+
 
 module.exports = router;

@@ -70,9 +70,7 @@ var get_bpmn_from_unstructured = {
 							eventlog_inputs.complete_field=req.body.timestamp;
 							eventlog_inputs.comments_field=req.body.comments;
 
-							gen_keyphrase_for_comments(eventlog_inputs).then(function(data)){
-								
-							}
+							
 
 							make_script(eventlog_inputs).then(function(data){
 								res.send(data);

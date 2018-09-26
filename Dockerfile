@@ -5,6 +5,8 @@ WORKDIR /opt
 
 COPY . .
 
+RUN apk update && apk upgrade && apk add --update wget
+
 RUN wget -v -O dotProm.tar.gz -L https://ibm.box.com/shared/static/6qdsydaq6cuko0uu4kvkkhdu6mw1xbyu.gz
 RUN tar -xvf dotProm.tar.gz
 RUN mv dotProm ~/.ProM68

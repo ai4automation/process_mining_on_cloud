@@ -46,7 +46,8 @@ RUN apk update && apk upgrade && apk add --update \
      tiff-dev \
      libwebp-dev \
      linux-headers \
-     xvfb
+     xvfb \
+     p7zip
 
 ENV CC /usr/bin/clang
 ENV CXX /usr/bin/clang++

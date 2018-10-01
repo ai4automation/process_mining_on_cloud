@@ -28,10 +28,10 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repos
     apk add --no-cache --virtual .build-deps gifsicle pngquant optipng libjpeg-turbo-utils udev ttf-opensans && \
     apk add --no-cache python alpine-sdk xvfb udev yarn bash 
 
-RUN Xvfb :99 &
+#RUN Xvfb :99 &
 ENV DISPLAY=:99
 
 EXPOSE 3000
 
 #The `CMD` command must resolve to a property in the `scripts` object in the `package.json` file. It must be in the root of the directory you are executing your `CMD` command from.
-CMD ["npm", "start"]
+CMD ["sh", "run.sh"]

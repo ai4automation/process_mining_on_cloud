@@ -34,4 +34,5 @@ ENV DISPLAY=:99
 EXPOSE 3000
 
 #The `CMD` command must resolve to a property in the `scripts` object in the `package.json` file. It must be in the root of the directory you are executing your `CMD` command from.
-CMD ["sh", "run.sh"]
+#CMD ["sh", "run.sh"]
+CMD ["npm", "start"]

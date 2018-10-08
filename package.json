@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "prodstart": "NODE_ENV=production forever -o out.log -e err.log start ./bin/www",
-    "start": "Xvfb :99 &; node ./bin/www"
+    "build": "./run.sh",
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "forever-monitor": "^1.7.1",

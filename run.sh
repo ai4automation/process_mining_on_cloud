@@ -1,2 +1,2 @@
-Xvfb :99 &;
+Xvfb :99 &
 npm start

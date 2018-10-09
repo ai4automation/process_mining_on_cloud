@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "prodstart": "NODE_ENV=production forever -o out.log -e err.log start ./bin/www",
-    "build": "./run.sh",
+    "startprom": "./run.sh",
     "start": "node ./bin/www"
   },
   "dependencies": {

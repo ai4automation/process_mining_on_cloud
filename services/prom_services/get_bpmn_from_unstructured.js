@@ -15,7 +15,7 @@ var make_script = function (eventlog_inputs) {
 			flags: 'a' // 'a' means appending (old data will be preserved)
 		})
 		logger.on('open', function (fd) {
-			logger.write("String argStr=\"eventlogs/" + eventlog_inputs.file.filename);
+			logger.write("String argStr=\"eventlogs/" + eventlog_inputs.filename);
 			logger.write(" -trace " + eventlog_inputs.trace_field);
 			logger.write(" -event " + eventlog_inputs.event_field);
 			logger.write(" -complete " + eventlog_inputs.complete_field);
@@ -60,7 +60,7 @@ var get_bpmn_from_unstructured = {
 		// show the uploaded file name
 		var eventlog_inputs = {};
 		eventlog_inputs.filestring = path.basename(req.file.filename, path.extname(req.file.filename));
-		eventlog_inputs.file = req.file
+		eventlog_inputs.filename = req.file.filename
 		filename = req.file.filename;
 		eventlog_inputs.trace_field = req.body.caseid;
 		eventlog_inputs.complete_field = req.body.timestamp;
@@ -95,6 +95,7 @@ var get_bpmn_from_unstructured = {
 							derived_file = path.join(save_path, eventlog_inputs.filestring + '_derived.csv');
 							eventlog_inputs.filestring = eventlog_inputs.filestring + '_derived';
 							eventlog_inputs.event_field = 'DERIVED_ACTION';
+							eventlog_inputs.filename = eventlog_inputs.filestring + '_derived.csv';
 							console.log(derived_file);
 							var fs = require('fs');
 							fs.writeFile(derived_file, csvdata, function (err) {

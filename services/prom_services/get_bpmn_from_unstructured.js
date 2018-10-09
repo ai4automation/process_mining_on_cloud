@@ -95,7 +95,7 @@ var get_bpmn_from_unstructured = {
 							derived_file = path.join(save_path, eventlog_inputs.filestring + '_derived.csv');
 							eventlog_inputs.filestring = eventlog_inputs.filestring + '_derived';
 							eventlog_inputs.event_field = 'DERIVED_ACTION';
-							eventlog_inputs.filename = eventlog_inputs.filestring + '_derived.csv';
+							eventlog_inputs.filename = eventlog_inputs.filestring + '.csv';
 							console.log(derived_file);
 							var fs = require('fs');
 							fs.writeFile(derived_file, csvdata, function (err) {

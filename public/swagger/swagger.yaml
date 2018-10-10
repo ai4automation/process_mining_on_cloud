@@ -3,9 +3,9 @@ info:
   title: 'Process Discovery APIs'
   description: 'Discover process from structured and unstructured application logs'
   version: 1.0.0
-host: 'https://rtp2.cloud.boomerangplatform.net/ccspd/dev/promapi'
+host: 'rtp2.cloud.boomerangplatform.net/ccspd/dev/promapi'
 schemes:
-  - http
+  - https
 basePath: /discovery/v1
 produces:
   - application/json

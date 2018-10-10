@@ -20,7 +20,7 @@ paths:
       consumes:
         - multipart/form-data
       parameters:
-        - name: file
+        - name: eventlog
           in: formData
           description: event log to upload
           required: true

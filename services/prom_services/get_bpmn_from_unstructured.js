@@ -1,14 +1,12 @@
 var fs = require("fs")
 var path = require('path');
 var exec = require('child_process').exec;
-var multer = require('multer');
-var upload = multer({ dest: 'uploads/' })
 var path = require('path');
 var fs = require('fs')
 var request = require('request');
 
-//var clustering_url = 'http://process-demo.sl.cloud9.ibm.com';
-var clustering_url = 'https://rtp2.cloud.boomerangplatform.net/ccspd/dev/textclustering';
+var clustering_url = 'http://process-demo.sl.cloud9.ibm.com';
+//var clustering_url = 'https://rtp2.cloud.boomerangplatform.net/ccspd/dev/textclustering';
 var make_script = function (eventlog_inputs) {
 	return new Promise(function (resolve, reject) {
 		var logger = fs.createWriteStream("prom/generated_scripts/" + eventlog_inputs.filestring + '.txt', {

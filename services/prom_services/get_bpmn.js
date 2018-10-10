@@ -1,8 +1,8 @@
 var fs = require("fs")
 var path = require('path');
 var exec = require('child_process').exec;
-var multer = require('multer');
-var upload = multer({ dest: 'uploads/' })
+//var multer = require('multer');
+//var upload = multer({ dest: 'uploads/' })
 var path = require('path');
 var fs = require('fs')
 var Zip = require('node-7z');

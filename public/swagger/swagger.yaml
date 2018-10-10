@@ -40,6 +40,11 @@ paths:
           description: activity completion timestamp in event log
           required: true
           type: string
+        - name: comments
+          in: formData
+          description: comments field name in the event log
+          required: false
+          type: string
       tags:
         - process mining from structured data
       responses:

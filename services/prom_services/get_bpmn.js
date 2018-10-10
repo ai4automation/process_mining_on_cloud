@@ -28,10 +28,10 @@ var make_script = function (eventlog_inputs) {
 				flags: 'a' // 'a' means appending (old data will be preserved)
 			})
 			sh_logger.on('open', function (fd) {
-				sh_logger.write("sh Prom68CLI.sh -f generated_scripts/" + eventlog_inputs.filestring + ".txt\n");
+				sh_logger.write("sh ProM68CLI.sh -f generated_scripts/" + eventlog_inputs.filestring + ".txt\n");
 				sh_logger.write("7z x -y -oxesfiles xesfiles/" + eventlog_inputs.filestring + ".xes.gz\n");
 				sh_logger.write("echo \"String xesfilename=\\\"" + eventlog_inputs.filestring + "\\\";\"| cat - template_generate_bpmn.txt > generated_scripts/" + eventlog_inputs.filestring + "_bpmn.txt\n");
-				sh_logger.write("sh Prom68CLI.sh -f generated_scripts/" + eventlog_inputs.filestring + "_bpmn.txt\n");
+				sh_logger.write("sh ProM68CLI.sh -f generated_scripts/" + eventlog_inputs.filestring + "_bpmn.txt\n");
 				//	sh_logger.write("cp output_bpmn_files/"+eventlog_inputs.filestring+".bpmn ../public/output_bpmn_files/\n");
 				sh_logger.end();
 			});

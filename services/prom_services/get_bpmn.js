@@ -53,6 +53,15 @@ var make_script = function (eventlog_inputs) {
 	});
 
 }
+
+var print_log = function(log_file){
+	fs.readFile(log_file, 'utf8', function(err, data) {  
+		if (err) throw err;
+		console.log(data);
+	});
+	
+
+}
 var get_bpmn = {
 	invoke: function (req, res, next) {
 		// show the uploaded file name
@@ -60,6 +69,8 @@ var get_bpmn = {
 		eventlog_inputs.filestring = path.basename(req.file.filename, path.extname(req.file.filename));
 		eventlog_inputs.filename = req.file.filename
 		filename = req.file.filename;
+		save_path = path.dirname(req.file.path);
+		log_file = save_path+'../logs/'+filename+'_derived.log'
 		eventlog_inputs.trace_field = req.body.caseid;
 		eventlog_inputs.complete_field = req.body.timestamp;
 		if ("comments" in req.body && req.body.comments != undefined) {
@@ -75,6 +86,7 @@ var get_bpmn = {
 			}, function (error, response, body) {
 				if (error) {
 					console.log('error: ' + error)
+					print_log(log_file);
 					res.send(error)
 				} else {
 					if (body == undefined)
@@ -86,10 +98,11 @@ var get_bpmn = {
 
 					}, function (error, response, csvdata) {
 						if (error) {
-							console.log('error: ' + error)
-							res.send(error)
+							console.log('error: ' + error);
+							print_log(log_file);
+							res.send(error);
 						} else {
-							save_path = path.dirname(req.file.path);
+							
 							derived_file = path.join(save_path, eventlog_inputs.filestring + '_derived.csv');
 							eventlog_inputs.filestring = eventlog_inputs.filestring + '_derived';
 							eventlog_inputs.event_field = 'DERIVED_ACTION';
@@ -98,11 +111,17 @@ var get_bpmn = {
 							var fs = require('fs');
 							fs.writeFile(derived_file, csvdata, function (err) {
 								if (err) {
-									return console.log(err);
+									console.log('error: ' + err);
+									print_log(log_file);
+									res.send(err);
 								}
 								make_script(eventlog_inputs).then(function (data) {
+									console.log(data);
+									print_log(log_file);
 									res.send(data);
 								}).catch(function () {
+									console.log('error in fileupload\n');
+									print_log(log_file);
 									res.send("error in fileupload\n");
 								});
 							});
@@ -115,8 +134,10 @@ var get_bpmn = {
 		} else {
 			eventlog_inputs.event_field = req.body.activity;
 			make_script(eventlog_inputs).then(function (data) {
+				print_log(log_file);
 				res.send(data);
 			}).catch(function () {
+				print_log(log_file);
 				res.send("error in fileupload\n");
 			});
 		}

@@ -70,7 +70,7 @@ var get_bpmn = {
 		eventlog_inputs.filename = req.file.filename
 		filename = req.file.filename;
 		save_path = path.dirname(req.file.path);
-		log_file = save_path+'/../logs/'+eventlog_inputs.filestring+'_derived.log'
+		//log_file = save_path+'/../logs/'+eventlog_inputs.filestring+'_derived.log'
 		eventlog_inputs.trace_field = req.body.caseid;
 		eventlog_inputs.complete_field = req.body.timestamp;
 		if ("comments" in req.body && req.body.comments != undefined) {
@@ -102,7 +102,7 @@ var get_bpmn = {
 							print_log(log_file);
 							res.send(error);
 						} else {
-							
+							log_file = save_path+'/../logs/'+eventlog_inputs.filestring+'_derived.log'
 							derived_file = path.join(save_path, eventlog_inputs.filestring + '_derived.csv');
 							eventlog_inputs.filestring = eventlog_inputs.filestring + '_derived';
 							eventlog_inputs.event_field = 'DERIVED_ACTION';
@@ -132,6 +132,7 @@ var get_bpmn = {
 				}
 			});
 		} else {
+			log_file = save_path+'/../logs/'+eventlog_inputs.filestring+'.log'
 			eventlog_inputs.event_field = req.body.activity;
 			make_script(eventlog_inputs).then(function (data) {
 				print_log(log_file);

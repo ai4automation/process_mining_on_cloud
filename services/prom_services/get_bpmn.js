@@ -135,7 +135,7 @@ var get_bpmn = {
 			log_file = save_path+'/../logs/'+eventlog_inputs.filestring+'.log'
 			eventlog_inputs.event_field = req.body.activity;
 			make_script(eventlog_inputs).then(function (data) {
-				print_log(log_file);
+				//print_log(log_file);
 				res.send(data);
 			}).catch(function () {
 				print_log(log_file);

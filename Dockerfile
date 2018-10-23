@@ -11,7 +11,7 @@ RUN apk update && apk upgrade && apk add --update \
     zip \
     p7zip
 
-RUN apk add -u openjdk8-jre graphviz mysql-client fontconfig ttf-dejavu unzip openssl
+RUN apk add --update openjdk8-jre graphviz mysql-client fontconfig ttf-dejavu unzip openssl
 RUN curl https://www.fontsquirrel.com/fonts/download/open-sans -J -O
 RUN unzip open-sans.zip -d /usr/share/fonts
 RUN fc-cache -fv

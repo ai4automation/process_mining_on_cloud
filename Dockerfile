@@ -1,6 +1,5 @@
 FROM node:alpine
 
-
 COPY . /app
 WORKDIR /app
 RUN date -u +"%Y-%m-%dT%H:%M:%SZ" > .build_time

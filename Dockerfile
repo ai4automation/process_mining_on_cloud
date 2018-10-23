@@ -27,6 +27,8 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repos
     apk add --no-cache --virtual .build-deps gifsicle pngquant optipng libjpeg-turbo-utils udev ttf-opensans && \
     apk add --no-cache python alpine-sdk xvfb udev yarn bash 
 
+RUN apk update && apk upgrade
+
 #RUN Xvfb :99 &
 ENV DISPLAY=:99
 

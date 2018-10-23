@@ -11,7 +11,7 @@ RUN apk update && apk upgrade && apk add --update \
     zip \
     p7zip
 
-RUN apk add openjdk8-jre graphviz mysql-client fontconfig ttf-dejavu unzip openssl
+RUN apk add -u openjdk8-jre graphviz mysql-client fontconfig ttf-dejavu unzip openssl
 RUN curl https://www.fontsquirrel.com/fonts/download/open-sans -J -O
 RUN unzip open-sans.zip -d /usr/share/fonts
 RUN fc-cache -fv
@@ -19,8 +19,6 @@ RUN fc-cache -fv
 RUN wget -v -O dotProm.tar.gz -L https://ibm.box.com/shared/static/6qdsydaq6cuko0uu4kvkkhdu6mw1xbyu.gz
 RUN tar -xvf dotProm.tar.gz
 RUN mv dotProm ~/.ProM68
-
-RUN apk upgrade graphviz
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
     echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \

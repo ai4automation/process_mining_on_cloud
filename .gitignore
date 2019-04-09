@@ -8,6 +8,7 @@ yarn-error.log*
 uploads/*
 prom/xesfiles/*
 prom/output_bpmn_files/*
+prom/input_bpmn_files/*
 prom/output_pnml_files/*
 prom/logs/*
 prom/generated_scripts/*
@@ -20,6 +21,7 @@ prom/eventlogs/*
 !prom/logs/.gitkeep
 !prom/generated_scripts/.gitkeep
 !prom/output_bpmn_files/.gitkeep
+!prom/input_bpmn_files/.gitkeep
 !prom/output_pnml_files/.gitkeep
 !prom/eventlogs/.gitkeep
 

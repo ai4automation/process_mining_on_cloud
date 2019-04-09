@@ -1,0 +1,14 @@
+System.out.println("Loading");
+String bpmn_inputs_dir = "input_bpmn_files/";
+String pnmlfilepath = "output_pnml_files/";
+File bpmn_file = new File(bpmn_inputs_dir.concat(bpmnfilename).concat(".bpmn"));
+File petri_net_file = new File(pnmlfilepath.concat(bpmnfilename).concat(".pnml"));
+
+
+bpmn_net = import_bpmn_model_from_bpmn_2_0_file(bpmn_file);
+bpmn_diagram = select_bpmn_diagram(bpmn_net);
+pn_and_marking = bpmn_to_petrinet(bpmn_diagram);
+epnml_export_petri_net_(pn_and_marking[0], petri_net_file);
+
+
+System.exit(0);

@@ -83,7 +83,30 @@ paths:
           required: true
           type: string
       tags:
-        - process mining from structured data and return petrinet model
+        - process mining from structured data
+      responses:
+        '202':
+          description: OK
+          schema:
+            type: json
+  /convert_to_pnml:
+    post:
+      summary: Convert BPMN model into Petrinet model
+      description: >
+        convert bpmn model into petrinet model
+      produces:
+        - application/json
+      consumes:
+        - multipart/form-data
+      parameters:
+        - name: bpmn_model_file
+          in: formData
+          description: bpmn model to upload
+          required: true
+          type: file
+
+      tags:
+        - Model Conversions
       responses:
         '202':
           description: OK

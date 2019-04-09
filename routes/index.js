@@ -21,8 +21,8 @@ router.get('/', function(req, res, next) {
 });
 
 var upload = multer({
-		storage: storage
-	}).single('eventlog')
+        storage: storage
+    }).single('eventlog')
 
 router.post('/mine_model', upload,get_bpmn.invoke);
 

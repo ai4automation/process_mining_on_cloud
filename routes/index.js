@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var get_bpmn = require('../services/prom_services/get_bpmn');
+var get_pnml= require('../services/prom_services/get_pnml');
+
 var multer = require('multer');
 var upload = multer({ dest: 'uploads/' });
 var path = require('path')
@@ -25,6 +27,7 @@ var upload = multer({
     }).single('eventlog')
 
 router.post('/mine_model', upload,get_bpmn.invoke);
+router.post('/mine_pnml_model', upload,get_pnml.invoke);
 
 
 module.exports = router;

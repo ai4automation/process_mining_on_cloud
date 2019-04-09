@@ -1,0 +1,25 @@
+System.out.println("Loading");
+String xesfilepath = "xesfiles/";
+String pnmlfilepath = "output_pnml_files/";
+log = open_xes_log_file(xesfilepath.concat(xesfilename).concat(".xes"));
+File petri_net_file = new File(pnmlfilepath.concat(xesfilename).concat(".pnml"));
+
+
+System.out.println("Setting classifier");
+org.deckfour.xes.classification.XEventClassifier classifier = new org.deckfour.xes.classification.XEventNameClassifier();
+
+System.out.println("Creatingistics miner settings");
+org.processmining.plugins.heuristicsnet.miner.heuristics.miner.settings.HeuristicsMinerSettings hms = new org.processmining.plugins.heuristicsnet.miner.heuristics.miner.settings.HeuristicsMinerSettings();
+hms.setClassifier(classifier);
+
+System.out.println("Callingr");
+net = mine_for_a_heuristics_net_using_heuristics_miner(log, hms);
+
+System.out.println("TranslatingN");
+pn_and_marking = convert_heuristics_net_into_petri_net(net);
+epnml_export_petri_net_(pn_and_marking[0], petri_net_file);
+
+
+System.out.println(net);
+
+System.exit(0);

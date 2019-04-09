@@ -52,7 +52,43 @@ paths:
           description: OK
           schema:
             type: json
-
+  /mine_pnml_model:
+    post:
+      summary: Process mining from structured event log and return Petrinet model
+      description: >
+        process mining as service. mines process from structured event log
+      produces:
+        - application/json
+      consumes:
+        - multipart/form-data
+      parameters:
+        - name: eventlog
+          in: formData
+          description: event log to upload
+          required: true
+          type: file
+        - name: caseid
+          in: formData
+          description: case id field name in the event log
+          required: true
+          type: string
+        - name: activity
+          in: formData
+          description: activity field name in the event log
+          required: true
+          type: string
+        - name: timestamp
+          in: formData
+          description: activity completion timestamp in event log
+          required: true
+          type: string
+      tags:
+        - process mining from structured data and return petrinet model
+      responses:
+        '202':
+          description: OK
+          schema:
+            type: json
 
 definitions:
   Error:

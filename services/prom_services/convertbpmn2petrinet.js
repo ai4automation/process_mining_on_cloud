@@ -10,7 +10,7 @@ var request = require('request');
 
 var convert_to_dfg = function(pnml_string){
 	return new Promise(function (resolve, reject) {
-    var process = spawn('python3',["python/get_graphml_from_pnet_string.py",pnml_string])
+    var process = spawn('source activate py36;python3',["python/get_graphml_from_pnet_string.py",pnml_string])
     console.log("Started python process")
     dataString = '';
     process.stdout.on('data', function(data){

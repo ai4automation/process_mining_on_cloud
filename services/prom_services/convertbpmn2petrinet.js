@@ -1,10 +1,27 @@
 var fs = require("fs")
 var path = require('path');
 var exec = require('child_process').exec;
+var spawn = require('child_process').spawn;
+
 var path = require('path');
 var fs = require('fs')
 var request = require('request');
 
+
+var convert_to_dfg = function(pnml_string){
+	return new Promise(function (resolve, reject) {
+    var process = spawn('python3',["python/get_graphml_from_pnet_string.py",pnml_string])
+    console.log("Started python process")
+    dataString = '';
+    process.stdout.on('data', function(data){
+      dataString += data.toString();
+    });
+
+    process.stdout.on('end', function() {
+        resolve(dataString);
+    } )
+	});
+}
 
 var make_script = function (bpmn_inputs) {
 	return new Promise(function (resolve, reject) {
@@ -24,9 +41,7 @@ var make_script = function (bpmn_inputs) {
 				' 2>logs/' + bpmn_inputs.filestring + '.log', (error, stdout, stderr) => {
 
 					console.log(`stdout: ${stdout}`);
-					fs.readFile('prom/output_pnml_files/' + bpmn_inputs.filestring + ".pnml", 'utf8', function (err, data) {
-						resolve(data)
-					});
+					resolve('prom/output_pnml_files/' + bpmn_inputs.filestring + ".pnml")
 
 				});
 		})
@@ -53,9 +68,33 @@ var convert2pnml = {
 		//log_file = save_path+'/../logs/'+bpmn_inputs.filestring+'_derived.log'
 
 		model_file = save_path+'/../input_bpmn_files/'+bpmn_inputs.filestring+'.bpmn'
-		make_script(bpmn_inputs).then(function (data) {
+		make_script(bpmn_inputs).then(function (out_file_path) {
 			//print_log(log_file);
-			res.send(data);
+			fs.readFile(out_file_path, 'utf8', function (err, data) {
+				res.send(data)
+			});
+		}).catch(function () {
+			print_log(model_file);
+			res.send("error in fileupload\n");
+		});
+
+
+	},
+
+	get_dfg_representation: function (req, res, next) {
+		// show the uploaded file name
+		var bpmn_inputs = {};
+		bpmn_inputs.filestring = path.basename(req.file.filename, path.extname(req.file.filename));
+		bpmn_inputs.filename = req.file.filename
+		filename = req.file.filename;
+		save_path = path.dirname(req.file.path);
+		//log_file = save_path+'/../logs/'+bpmn_inputs.filestring+'_derived.log'
+
+		model_file = save_path+'/../input_bpmn_files/'+bpmn_inputs.filestring+'.bpmn'
+		make_script(bpmn_inputs).then(function (path) {
+				convert_to_dfg(path).then(function(model){
+					res.send(model)
+				})
 		}).catch(function () {
 			print_log(model_file);
 			res.send("error in fileupload\n");
@@ -63,5 +102,10 @@ var convert2pnml = {
 
 
 	}
+
 }
+
+
+
+
 module.exports = convert2pnml;

@@ -44,6 +44,6 @@ var bpmn_upload = multer({
 router.post('/mine_model', upload,get_bpmn.invoke);
 router.post('/mine_pnml_model', upload,get_pnml.invoke);
 router.post('/convert_to_pnml', bpmn_upload,convert2pnml.invoke);
-
+router.post('/get_dfg_representation', bpmn_upload,convert2pnml.get_dfg_representation);
 
 module.exports = router;

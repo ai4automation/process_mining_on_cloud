@@ -25,7 +25,7 @@ var bpmn_storage = multer.diskStorage({
         callback(null, 'prom/input_bpmn_files')
     },
     filename: function(req, file, callback) {
-        callback(null, path.basename(file.originalname,path.extname(file.originalname)) + '-' + Date.now() + path.extname(file.originalname))
+        callback(null, path.basename(file.originalname,path.extname(file.originalname)) + '-' + Date.now() + ".bpmn")
         //callback(null, file.originalname)
     }
 })

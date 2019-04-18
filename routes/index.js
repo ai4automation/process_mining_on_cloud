@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var get_bpmn = require('../services/prom_services/get_bpmn');
 var get_pnml= require('../services/prom_services/get_pnml');
+var get_baw_data= require('../services/data_services/get_baw_data');
+
 var convert2pnml = require('../services/prom_services/convertbpmn2petrinet.js');
 
 var multer = require('multer');
@@ -45,5 +47,8 @@ router.post('/mine_model', upload,get_bpmn.invoke);
 router.post('/mine_pnml_model', upload,get_pnml.invoke);
 router.post('/convert_to_pnml', bpmn_upload,convert2pnml.invoke);
 router.post('/get_dfg_representation', bpmn_upload,convert2pnml.get_dfg_representation);
+router.get('/get_baw_model',get_baw_data.get_model);
+router.get('/get_bai_activity_timeseries',get_baw_data.get_activity_timeseries);
+
 
 module.exports = router;

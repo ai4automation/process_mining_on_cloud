@@ -51,7 +51,6 @@ def get_trie_representation(activity_timeseries):
         add(root, activity_groups[i])
     G = nx.DiGraph()
     get_trie_recur(root,G)
-    graphml_str = "";
     return(G)
 
 def get_trie_recur(node,G):

@@ -11,6 +11,56 @@ basePath: /baox/v1
 produces:
   - application/json
 paths:
+  /get_baw_model:
+    get:
+      summary: Fetch BAW process models for given process application id and version id
+      description: >
+        Fetch BAW process models for given process application id and version id
+      produces:
+        - application/xml
+      parameters:
+        - name: processApplicationId
+          in: path
+          description: Process Application  ID
+          required: true
+          type: string
+        - name: processVersionId
+          in: path
+          description: Process Application Version  ID
+          required: true
+          type: string
+      tags:
+        - Data Reading
+      responses:
+        '200':
+          description: Process model in BPMN2.0 format
+          content:
+            application/xml:
+  /get_bai_activity_timeseries:
+    get:
+      summary: Fetch activity timeseries from BAI data lake
+      description: >
+        Fetch activity timeseries from BAI data lake for given process application id and process version id
+      produces:
+        - application/json
+      parameters:
+        - name: processApplicationId
+          in: path
+          description: Process Application  ID
+          required: true
+          type: string
+        - name: processVersionId
+          in: path
+          description: Process Application Version  ID
+          required: true
+          type: string
+      tags:
+        - Data Reading
+      responses:
+        '200':
+          description: Activity time series in json format
+          content:
+            application/json:
   /mine_bpmn_model:
     post:
       summary: Mine BPMN model from event log with structured and unstructured data

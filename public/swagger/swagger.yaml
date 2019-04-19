@@ -17,7 +17,7 @@ paths:
       description: >
         Mine BPMN model from event log with structured and unstructured data
       produces:
-        - application/json
+        - application/xml
       consumes:
         - multipart/form-data
       parameters:
@@ -49,10 +49,10 @@ paths:
       tags:
         - Representation learning
       responses:
-        '202':
-          description: OK
-          schema:
-            type: json
+        '200':
+          description: Process model in BPMN2.0 format
+          content:
+            application/xml:
 
   /mine_pn_model:
     post:
@@ -60,7 +60,7 @@ paths:
       description: >
         Mine Petrinet model from event log with structured data
       produces:
-        - application/json
+        - application/xml
       consumes:
         - multipart/form-data
       parameters:
@@ -87,18 +87,18 @@ paths:
       tags:
         - Representation learning
       responses:
-        '202':
-          description: OK
-          schema:
-            type: json
-            
+        '200':
+          description: Process model in PNML format
+          content:
+            application/xml:
+
   /convert_to_pnml:
     post:
       summary: Convert BPMN model into Petrinet model
       description: >
         convert bpmn model into petrinet model
       produces:
-        - application/json
+        - application/xml
       consumes:
         - multipart/form-data
       parameters:
@@ -110,10 +110,10 @@ paths:
       tags:
         - Representation learning
       responses:
-        '202':
-          description: OK
-          schema:
-            type: json
+        '200':
+          description: Process model in PNML format
+          content:
+            application/xml:
 
   /learn_trie_representation:
     post:
@@ -133,10 +133,11 @@ paths:
       tags:
         - Representation learning
       responses:
-        '202':
-          description: OK
-          schema:
-            type: json
+        '200':
+          description: Trie representation in graphML format
+          content:
+            application/xml:
+
 
   /convert_to_dfg:
     post:
@@ -144,7 +145,7 @@ paths:
       description: >
         Convert BPMN model into Directly follows graph representation
       produces:
-        - application/json
+        - application/xml
       consumes:
         - multipart/form-data
       parameters:
@@ -156,10 +157,11 @@ paths:
       tags:
         - Representation learning
       responses:
-        '202':
-          description: OK
-          schema:
-            type: json
+        '200':
+          description: DFG in graphML format
+          content:
+            application/xml:
+
 
 definitions:
   Error:

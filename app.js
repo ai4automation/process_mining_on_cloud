@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/discovery/v1', routes);
+app.use('/baox/v1', routes);
 app.use('/users', users);
 
 // catch 404 and forward to error handler

@@ -1,20 +1,21 @@
 swagger: '2.0'
 info:
-  title: 'Process Discovery APIs'
-  description: 'Discover process from structured and unstructured application logs'
+  title: 'Business Automation Opportunity Explorer APIs'
+  description: 'Set of micro-services for representation learning of process data, descriptive analysis for hotspots,
+                prescriptive analysis for automation opportunities and what-if analysis for KPI impact'
   version: 1.0.0
 host: 'localhost:3000'
 schemes:
   - https
-basePath: /discovery/v1
+basePath: /baox/v1
 produces:
   - application/json
 paths:
-  /mine_model:
+  /mine_bpmn_model:
     post:
-      summary: Process mining from structured event log
+      summary: Mine BPMN model from event log with structured and unstructured data
       description: >
-        process mining as service. mines process from structured event log
+        Mine BPMN model from event log with structured and unstructured data
       produces:
         - application/json
       consumes:
@@ -46,17 +47,18 @@ paths:
           required: false
           type: string
       tags:
-        - process mining from structured data
+        - Representation learning
       responses:
         '202':
           description: OK
           schema:
             type: json
-  /mine_pnml_model:
+
+  /mine_pn_model:
     post:
-      summary: Process mining from structured event log and return Petrinet model
+      summary: Mine Petrinet model from event log with structured data
       description: >
-        process mining as service. mines process from structured event log
+        Mine Petrinet model from event log with structured data
       produces:
         - application/json
       consumes:
@@ -83,12 +85,13 @@ paths:
           required: true
           type: string
       tags:
-        - process mining from structured data
+        - Representation learning
       responses:
         '202':
           description: OK
           schema:
             type: json
+            
   /convert_to_pnml:
     post:
       summary: Convert BPMN model into Petrinet model
@@ -104,9 +107,54 @@ paths:
           description: bpmn model to upload
           required: true
           type: file
-
       tags:
-        - Model Conversions
+        - Representation learning
+      responses:
+        '202':
+          description: OK
+          schema:
+            type: json
+
+  /learn_trie_representation:
+    post:
+      summary: learn trie representation from activity timeseries
+      description: >
+        learn trie representation from activity timeseries
+      produces:
+        - application/json
+      consumes:
+        - multipart/form-data
+      parameters:
+        - name: activity_timeseries
+          in: formData
+          description: activity_timeseries from BAI
+          required: true
+          type: file
+      tags:
+        - Representation learning
+      responses:
+        '202':
+          description: OK
+          schema:
+            type: json
+
+  /convert_to_dfg:
+    post:
+      summary: Convert BPMN model into Directly follows graph representation
+      description: >
+        Convert BPMN model into Directly follows graph representation
+      produces:
+        - application/json
+      consumes:
+        - multipart/form-data
+      parameters:
+        - name: bpmn_model_file
+          in: formData
+          description: bpmn model to upload
+          required: true
+          type: file
+      tags:
+        - Representation learning
       responses:
         '202':
           description: OK

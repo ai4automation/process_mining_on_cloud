@@ -20,12 +20,12 @@ paths:
         - application/xml
       parameters:
         - name: processApplicationId
-          in: path
+          in: query
           description: Process Application  ID
           required: true
           type: string
         - name: processVersionId
-          in: path
+          in: query
           description: Process Application Version  ID
           required: true
           type: string
@@ -45,12 +45,12 @@ paths:
         - application/json
       parameters:
         - name: processApplicationId
-          in: path
+          in: query
           description: Process Application  ID
           required: true
           type: string
         - name: processVersionId
-          in: path
+          in: query
           description: Process Application Version  ID
           required: true
           type: string

@@ -125,7 +125,7 @@ paths:
       consumes:
         - multipart/form-data
       parameters:
-        - name: activity_timeseries
+        - name: file
           in: formData
           description: activity_timeseries from BAI
           required: true
@@ -161,6 +161,56 @@ paths:
           description: DFG in graphML format
           content:
             application/xml:
+
+  /get_unique_paths:
+    post:
+      summary: get unique paths from activity timeseries
+      description: >
+        get unique paths taken along with summary from activity time series
+      produces:
+        - application/json
+      consumes:
+        - multipart/form-data
+      parameters:
+        - name: file
+          in: formData
+          description: activity_timeseries from BAI
+          required: true
+          type: file
+      tags:
+        - Descriptive Analysis for Hotspots
+      responses:
+        '200':
+          description: paths in json format
+          content:
+            application/json:
+  /replay_log_on_dfg:
+    post:
+      summary: Replay activity timeseries on Directly follows graph for performance analysis
+      description: >
+        Replay activity timeseries on Directly follows graph for performance analysis
+      produces:
+        - application/xml
+      consumes:
+        - multipart/form-data
+      parameters:
+        - name: activity_timeseries_file
+          in: formData
+          description: activity_timeseries from BAI
+          required: true
+          type: file
+        - name: dfg_file
+          in: formData
+          description: Directly follows graph of the model
+          required: true
+          type: file
+      tags:
+        - Descriptive Analysis for Hotspots
+      responses:
+        '200':
+          description: Decorated DFG with performance annotations
+          content:
+            application/json:
 
 
 definitions:

@@ -1,1 +1,1 @@
-APIs for Business automation opportunity explorer (AKA Hotspot analysis and automation opportunity discovery)
+APIs for Business automation opportunity explorer (AKA Hotspot identification and automation opportunity discovery)

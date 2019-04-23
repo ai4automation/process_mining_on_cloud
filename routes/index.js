@@ -7,6 +7,7 @@ var convert2pnml = require('../services/prom_services/convertbpmn2petrinet.js');
 var learn_trie_representation = require('../services/representation_learning/trie_representation.js');
 var get_unique_paths = require('../services/hotspot_analysis/unique_paths');
 var replay_log_on_dfg = require('../services/hotspot_analysis/replay_log_on_dfg');
+var get_gv_graph = require('../services/hotspot_analysis/get_gv_graph');
 
 
 var multer = require('multer');
@@ -79,6 +80,7 @@ router.get('/get_bai_activity_timeseries',get_baw_data.get_activity_timeseries);
 router.post('/learn_trie_representation',activity_timeseries_upload,learn_trie_representation.invoke);
 router.post('/get_unique_paths',activity_timeseries_upload,get_unique_paths.invoke);
 router.post('/replay_log_on_dfg',replay_files_upload,replay_log_on_dfg.invoke);
+router.post('/get_gv_graph',activity_timeseries_upload,get_gv_graph.invoke);
 
 
 module.exports = router;

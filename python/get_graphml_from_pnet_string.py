@@ -31,7 +31,7 @@ def get_graphml_from_pnet(pnml_file):
                     G2.add_edge(p,s)
     r_nodes = []
     for n, t in G2.nodes.data("name"):
-        if(t=="tau" or "+start" in t or "?_" in t or t[0]=="_"):
+        if(t=="tau" or "+start" in t or "?_" in t or t[0]=="_" or "t_" in t):
             for p in G2.predecessors(n):
                 for s in G2.successors(n):
                     G2.add_edge(p,s)
